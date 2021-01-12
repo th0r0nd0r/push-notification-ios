@@ -327,7 +327,7 @@ class PushNotificationIOS {
       'PushNotificationManager is not available.',
     );
 
-    RNCPushNotificationIOS.registerForRemoteNotifications();
+    RNCPushNotificationIOS.registerForNotifications();
   }
 
   /**
