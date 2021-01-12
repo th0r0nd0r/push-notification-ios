@@ -2,13 +2,13 @@ fork of @react-native/community/push-notification-ios that adds a `register` met
 
 This fixes the issue with where if the 'register' event listener doesn't work for any reason when notifications are first allowed (e.g. no internet connection, APNs is down), the app would never receive the APNs token, and would have no way to ever request the token again, meaining the app instance would never receive notifications.
 
-## Usage
-
 ### Install
 
 ```bash
 npm install @th0r0nd0r/push-notification-ios
 ```
+
+## Usage
 
 ### `register()`
 
