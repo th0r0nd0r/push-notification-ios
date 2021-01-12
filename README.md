@@ -15,7 +15,9 @@ register();
 calls [registerForRemoteNotifications](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications). Once a response is received from APNs, `onRegister` will fire with the new APNs token.
 
 NOTE: you need to define a 'register' event listener prior to calling `register` in order to handle the token.
+
 ex: `PushNotificationIOS.addEventListener('register, handler);`
+
 or use `PushNotification.configure({onRegister: handler})` if using in conjunction with [react-native-push-notificaion](https://github.com/zo0r/react-native-push-notification)
 
 
