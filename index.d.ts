@@ -8,74 +8,11 @@ export interface FetchResult {
   ResultFailed: 'UIBackgroundFetchResultFailed';
 }
 
-export interface AuthorizationStatus {
-  UNAuthorizationStatusNotDetermined: 0;
-  UNAuthorizationStatusDenied: 1;
-  UNAuthorizationStatusAuthorized: 2;
-  UNAuthorizationStatusProvisional: 3;
-}
-
-/**
- * Alert Object that can be included in the aps `alert` object
- */
-export type NotificationAlert = {
-  title?: string;
-  subtitle?: string;
-  body?: string;
-};
-
-/**
- * Notification Category that can include specific actions
- */
-export type NotificationCategory = {
-  id: string;
-  actions: NotificationAction[];
-};
-
-/**
- * Notification Action that can be added to specific categories
- */
-export type NotificationAction = {
-  /**
-   * Id of Action.
-   * This value will be returned as actionIdentifier when notification is received.
-   */
-  id: string;
-  /**
-   * Text to be shown on notification action button.
-   */
-  title: string;
-  /**
-   * Option for notification action.
-   */
-  options?: {
-    foreground?: boolean;
-    destructive?: boolean;
-    authenticationRequired?: boolean;
-  };
-  /**
-   * Option for textInput action.
-   * If textInput prop exists, then user action will automatically become a text input action.
-   * The text user inputs will be in the userText field of the received notification.
-   */
-  textInput?: {
-    /**
-     * Text to be shown on button when user finishes text input.
-     * Default is "Send" or its equivalent word in user's language setting.
-     */
-    buttonTitle?: string;
-    /**
-     * Placeholder for text input for text input action.
-     */
-    placeholder?: string;
-  };
-};
-
 export interface PushNotification {
   /**
    * An alias for `getAlert` to get the notification's main message string
    */
-  getMessage(): string | NotificationAlert;
+  getMessage(): string | Record<string, any>;
 
   /**
    * Gets the sound string from the `aps` object
@@ -90,7 +27,7 @@ export interface PushNotification {
   /**
    * Gets the notification's main message from the `aps` object
    */
-  getAlert(): string | NotificationAlert;
+  getAlert(): string | Record<string, any>;
 
   /**
    * Gets the notification's title from the `aps` object
@@ -113,81 +50,12 @@ export interface PushNotification {
   getData(): Record<string, any>;
 
   /**
-   * Get's the action id of the notification action user has taken.
-   */
-  getActionIdentifier(): string | undefined;
-
-  /**
-   * Gets the text user has inputed if user has taken the text action response.
-   */
-  getUserText(): string | undefined;
-
-  /**
    * iOS Only
    * Signifies remote notification handling is complete
    */
   finish(result: string): void;
 }
 
-export type NotificationRequest = {
-  /**
-   * identifier of the notification.
-   * Required in order to retrieve specific notification.
-   */
-  id: string;
-  /**
-   * A short description of the reason for the alert.
-   */
-  title?: string;
-  /**
-   * A secondary description of the reason for the alert.
-   */
-  subtitle?: string;
-  /**
-   * The message displayed in the notification alert.
-   */
-  body?: string;
-  /**
-   * The number to display as the app's icon badge.
-   */
-  badge?: number;
-  /**
-   * The sound to play when the notification is delivered.
-   * The file should be added in the ios project from Xcode, on your target, so that it is bundled in the final app.
-   * For more details see the example app.
-   */
-  sound?: string;
-  /**
-   * The category of this notification. Required for actionable notifications.
-   */
-  category?: string;
-  /**
-   * The thread identifier of this notification.
-   */
-  threadId?: string;
-  /**
-   * The date which notification triggers.
-   */
-  fireDate?: Date;
-  /**
-   * Sets notification to repeat daily.
-   * Must be used with fireDate.
-   */
-  repeats?: boolean;
-  /**
-   * Sets notification to be silent
-   */
-  isSilent?: boolean;
-  /**
-   * Optional data to be added to the notification
-   */
-  userInfo?: Record<string, any>;
-};
-
-/**
- * @deprecated see `NotificationRequest`
- * - This type will be removed in the next major version
- */
 export interface PresentLocalNotificationDetails {
   /**
    * The "action" displayed beneath an actionable notification. Defaults to "view";
@@ -211,8 +79,6 @@ export interface PresentLocalNotificationDetails {
   category?: string;
   /**
    * The sound played when the notification is fired (optional).
-   * The file should be added in the ios project from Xcode, on your target, so that it is bundled in the final app
-   * For more details see the example app.
    */
   soundName?: string;
   /**
@@ -225,10 +91,6 @@ export interface PresentLocalNotificationDetails {
   userInfo?: Record<string, any>;
 }
 
-/**
- * @deprecated see `NotificationRequest`
- * - This type will be removed in the next major version
- */
 export interface ScheduleLocalNotificationDetails {
   /**
    * The "action" displayed beneath an actionable notification. Defaults to "view";
@@ -257,8 +119,6 @@ export interface ScheduleLocalNotificationDetails {
   fireDate: string;
   /**
    * The sound played when the notification is fired (optional).
-   * The file should be added in the ios project from Xcode, on your target, so that it is bundled in the final app
-   * For more details see the example app.
    */
   soundName?: string;
   /**
@@ -278,11 +138,8 @@ export interface ScheduleLocalNotificationDetails {
 export type DeliveredNotification = {
   identifier: string;
   title: string;
-  subtitle: string;
   body: string;
   category?: string;
-  actionIdentifier?: string;
-  userText?: string;
   userInfo?: Record<string, any>;
   'thread-id'?: string;
 };
@@ -291,9 +148,6 @@ export interface PushNotificationPermissions {
   alert?: boolean;
   badge?: boolean;
   sound?: boolean;
-  lockScreen?: boolean;
-  notificationCenter?: boolean;
-  authorizationStatus?: AuthorizationStatus[keyof AuthorizationStatus];
 }
 
 export type PushNotificationEventName =
@@ -304,6 +158,9 @@ export type PushNotificationEventName =
 
 /**
  * Handle push notifications for your app, including permission handling and icon badge number.
+ * @see https://reactnative.dev/docs/pushnotificationios.html#content
+ *
+ * //FIXME: BGR: The documentation seems completely off compared to the actual js implementation. I could never get the example to run
  */
 export interface PushNotificationIOSStatic {
   /**
@@ -312,17 +169,11 @@ export interface PushNotificationIOSStatic {
    */
   FetchResult: FetchResult;
   /**
-   * Authorization status of notification settings
-   * For a list of possible values, see `PushNotificationIOS.AuthorizationStatus`.
-   */
-  AuthorizationStatus: AuthorizationStatus;
-  /**
-   * @deprecated use `addNotificationRequest`
    * Schedules the localNotification for immediate presentation.
    * details is an object containing:
    * alertBody : The message displayed in the notification alert.
    * alertAction : The "action" displayed beneath an actionable notification. Defaults to "view";
-   * soundName : The sound played when the notification is fired (optional). The file should be added in the ios project from Xcode, on your target, so that it is bundled in the final app. For more details see the example app.
+   * soundName : The sound played when the notification is fired (optional).
    * category : The category of this notification, required for actionable notifications (optional).
    * userInfo : An optional object containing additional notification data.
    * applicationIconBadgeNumber (optional) : The number to display as the app's icon badge. The default value of this property is 0, which means that no badge is displayed.
@@ -330,13 +181,12 @@ export interface PushNotificationIOSStatic {
   presentLocalNotification(details: PresentLocalNotificationDetails): void;
 
   /**
-   * @deprecated use `addNotificationRequest`
    * Schedules the localNotification for future presentation.
    * details is an object containing:
    * fireDate : The date and time when the system should deliver the notification.
    * alertBody : The message displayed in the notification alert.
    * alertAction : The "action" displayed beneath an actionable notification. Defaults to "view";
-   * soundName : The sound played when the notification is fired (optional). The file should be added in the ios project from Xcode, on your target, so that it is bundled in the final app. For more details see the example app.
+   * soundName : The sound played when the notification is fired (optional).
    * category : The category of this notification, required for actionable notifications (optional).
    * userInfo : An optional object containing additional notification data.
    * applicationIconBadgeNumber (optional) : The number to display as the app's icon badge. Setting the number to 0 removes the icon badge.
@@ -344,27 +194,9 @@ export interface PushNotificationIOSStatic {
   scheduleLocalNotification(details: ScheduleLocalNotificationDetails): void;
 
   /**
-   * Sends notificationRequest to notification center at specified firedate.
-   * Fires immediately if firedate is not set.
-   */
-  addNotificationRequest(request: NotificationRequest): void;
-
-  /**
    * Cancels all scheduled localNotifications
-   * @deprecated use `removeAllPendingNotificationRequests` instead
-   * - This method is deprecated in iOS 10 and will be removed from future release
    */
   cancelAllLocalNotifications(): void;
-
-  /**
-   * Removes all pending notifications
-   */
-  removeAllPendingNotificationRequests(): void;
-
-  /**
-   * Removes specified pending notifications from Notification Center.
-   */
-  removePendingNotificationRequests(identifiers: string[]): void;
 
   /**
    * Remove all delivered notifications from Notification Center.
@@ -400,27 +232,16 @@ export interface PushNotificationIOSStatic {
   getApplicationIconBadgeNumber(callback: (badge: number) => void): void;
 
   /**
-   * @deprecated use `removeAllPendingNotificationRequests`
-   * - This method will be removed in the next major version
-   * - Cancel local notifications.
-   * - Optionally restricts the set of canceled notifications to those notifications whose userInfo fields match the corresponding fields in the userInfo argument.
+   * Cancel local notifications.
+   * Optionally restricts the set of canceled notifications to those notifications whose userInfo fields match the corresponding fields in the userInfo argument.
    */
   cancelLocalNotifications(userInfo: Record<string, any>): void;
 
   /**
-   * @deprecated use `getPendingNotificationRequests`
-   * - This method will be removed in the next major version
-   * - Gets the local notifications that are currently scheduled.
+   * Gets the local notifications that are currently scheduled.
    */
   getScheduledLocalNotifications(
     callback: (notifications: ScheduleLocalNotificationDetails[]) => void,
-  ): void;
-
-  /**
-   * - Gets all pending notification requests that are currently scheduled.
-   */
-  getPendingNotificationRequests(
-    callback: (notifications: NotificationRequest[]) => void,
   ): void;
 
   /**
@@ -465,7 +286,13 @@ export interface PushNotificationIOSStatic {
    * Removes the event listener. Do this in `componentWillUnmount` to prevent
    * memory leaks
    */
-  removeEventListener(type: PushNotificationEventName): void;
+  removeEventListener(
+    type: PushNotificationEventName,
+    handler:
+      | ((notification: PushNotification) => void)
+      | ((deviceToken: string) => void)
+      | ((error: {message: string; code: number; details: any}) => void),
+  ): void;
 
   /**
    * Requests all notification permissions from iOS, prompting the user's
@@ -475,6 +302,13 @@ export interface PushNotificationIOSStatic {
     permissions?: PushNotificationPermissions[] | PushNotificationPermissions,
   ): Promise<PushNotificationPermissions>;
 
+  /**
+   * register for remote notifications with Apple Push Notification service.
+   * call this method if push notification permissions are enabled, but you
+   * do not have an APNs token for any reason.
+   */
+  register(): void;
+    
   /**
    * Unregister for all remote notifications received via Apple Push
    * Notification service.
@@ -504,12 +338,6 @@ export interface PushNotificationIOSStatic {
    * object if the app was launched by a push notification, or `null` otherwise.
    */
   getInitialNotification(): Promise<PushNotification | null>;
-
-  /**
-   * Sets notification category to notification center.
-   * Used to set specific actions for notifications that contains specified category
-   */
-  setNotificationCategories(categories: NotificationCategory[]): void;
 }
 
 declare const PushNotificationIOS: PushNotificationIOSStatic;
