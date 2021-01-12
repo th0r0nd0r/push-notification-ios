@@ -1,3 +1,20 @@
+fork of @react-native/community/push-notification-ios that adds a `register` method allowing you to call [registerForRemoteNotifications](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications) at will. Similar to react-native-firebase's [getToken](https://rnfirebase.io/reference/messaging#getToken) but for APNs.
+
+This fixes the issue where if `onRegister` doesn't work for any reason when notifications are first allowed (e.g. no internet connection, APNs is down), the app would never receive the APNs token, and would have no way to ever request the token again, meaining the app instance would never receive notifications.
+
+## Usage
+
+### `register()`
+
+```jsx
+register();
+```
+
+calls [registerForRemoteNotifications](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications). Once a response is received from APNs, `onRegister` will fire with the new APNs token.
+
+NOTE: you need to define an `onRegister` method in `PushNotification.configure` prior to calling `register` in order to handle the token.
+
+
 # @react-native-community/push-notification-ios
 
 [![Build Status][build-badge]][build]
