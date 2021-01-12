@@ -16,7 +16,7 @@ npm install @th0r0nd0r/push-notification-ios
 register();
 ```
 
-calls [registerForRemoteNotifications](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications). Once a response is received from APNs, `onRegister` will fire with the new APNs token.
+calls [registerForRemoteNotifications](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications). Once a response is received from APNs, any 'register' event listener you've defined will fire with the new APNs token.
 
 NOTE: you need to define a 'register' event listener prior to calling `register` in order to handle the token.
 
