@@ -348,7 +348,7 @@ RCT_EXPORT_METHOD(requestPermissions:(NSDictionary *)permissions
   }];
 }
 
-RCT_EXPORT_METHOD(registerForRemoteNotifications)
+RCT_EXPORT_METHOD(registerForNotifications)
 {
   [RCTSharedApplication() registerForRemoteNotifications];
 }
