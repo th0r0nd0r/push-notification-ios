@@ -319,6 +319,18 @@ class PushNotificationIOS {
   }
 
   /**
+   * register for remote notifications with Apple Push Notification service.
+   */
+  static register() {
+    invariant(
+      RNCPushNotificationIOS,
+      'PushNotificationManager is not available.',
+    );
+
+    RNCPushNotificationIOS.registerForRemoteNotifications();
+  }
+
+  /**
    * Unregister for all remote notifications received via Apple Push Notification service.
    *
    * See https://reactnative.dev/docs/pushnotificationios.html#abandonpermissions
@@ -329,15 +341,6 @@ class PushNotificationIOS {
       'PushNotificationManager is not available.',
     );
     RNCPushNotificationIOS.abandonPermissions();
-  }
-
-  static register(): Promise<string> {
-    invariant(
-      RNCPushNotificationIOS,
-      'PushNotificationManager is not available.',
-    );
-
-    RNCPushNotificationIOS.registerForRemoteNotifications();
   }
 
   /**
