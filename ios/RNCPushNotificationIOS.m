@@ -143,7 +143,7 @@ static NSDictionary *RCTFormatOpenedUNNotification(UNNotification *notification)
 
 #endif //TARGET_OS_TV / TARGET_OS_UIKITFORMAC
 
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE(CrispyPushNotificationIOS)
 
 - (dispatch_queue_t)methodQueue
 {
