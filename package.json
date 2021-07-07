@@ -11,7 +11,7 @@
     "ios",
     "js",
     "index.d.ts",
-    "RNCPushNotificationIOS.podspec"
+    "CrispyPushNotificationIOS.podspec"
   ],
   "scripts": {
     "start": "react-native start",
