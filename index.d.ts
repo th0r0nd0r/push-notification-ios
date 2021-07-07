@@ -158,14 +158,14 @@ export type PushNotificationEventName =
 
 /**
  * Handle push notifications for your app, including permission handling and icon badge number.
- * @see https://reactnative.dev/docs/pushnotificationios.html#content
+ * @see https://reactnative.dev/docs/CrispyPushNotificationIOS.html#content
  *
  * //FIXME: BGR: The documentation seems completely off compared to the actual js implementation. I could never get the example to run
  */
-export interface PushNotificationIOSStatic {
+export interface CrispyPushNotificationIOSStatic {
   /**
    * iOS fetch results that best describe the result of a finished remote notification handler.
-   * For a list of possible values, see `PushNotificationIOS.FetchResult`.
+   * For a list of possible values, see `CrispyPushNotificationIOS.FetchResult`.
    */
   FetchResult: FetchResult;
   /**
@@ -201,14 +201,14 @@ export interface PushNotificationIOSStatic {
   /**
    * Remove all delivered notifications from Notification Center.
    *
-   * See https://reactnative.dev/docs/pushnotificationios.html#removealldeliverednotifications
+   * See https://reactnative.dev/docs/CrispyPushNotificationIOS.html#removealldeliverednotifications
    */
   removeAllDeliveredNotifications(): void;
 
   /**
    * Provides you with a list of the app’s notifications that are still displayed in Notification Center.
    *
-   * See https://reactnative.dev/docs/pushnotificationios.html#getdeliverednotifications
+   * See https://reactnative.dev/docs/CrispyPushNotificationIOS.html#getdeliverednotifications
    */
   getDeliveredNotifications(
     callback: (notifications: Record<string, any>[]) => void,
@@ -217,7 +217,7 @@ export interface PushNotificationIOSStatic {
   /**
    * Removes the specified notifications from Notification Center
    *
-   * See https://reactnative.dev/docs/pushnotificationios.html#removedeliverednotifications
+   * See https://reactnative.dev/docs/CrispyPushNotificationIOS.html#removedeliverednotifications
    */
   removeDeliveredNotifications(identifiers: string[]): void;
 
@@ -248,7 +248,7 @@ export interface PushNotificationIOSStatic {
    * Attaches a listener to remote notifications while the app is running in the
    * foreground or the background.
    *
-   * The handler will get be invoked with an instance of `PushNotificationIOS`
+   * The handler will get be invoked with an instance of `CrispyPushNotificationIOS`
    *
    * The type MUST be 'notification'
    */
@@ -340,6 +340,6 @@ export interface PushNotificationIOSStatic {
   getInitialNotification(): Promise<PushNotification | null>;
 }
 
-declare const PushNotificationIOS: PushNotificationIOSStatic;
+declare const CrispyPushNotificationIOS: CrispyPushNotificationIOSStatic;
 
-export default PushNotificationIOS;
+export default CrispyPushNotificationIOS;

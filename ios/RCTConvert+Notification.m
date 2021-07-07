@@ -1,6 +1,6 @@
 //
 //  RCTConvert+.m
-//  RNCPushNotificationIOS
+//  CrispyPushNotificationIOS
 //
 //  Created by Jesse Katsumata on 2020/11/25.
 //

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RNCPushNotificationIOS.h"
+#import "CrispyPushNotificationIOS.h"
 
 #import <UserNotifications/UserNotifications.h>
 
@@ -14,7 +14,7 @@
 #import <React/RCTEventDispatcher.h>
 #import <React/RCTUtils.h>
 
-NSString *const RCTRemoteNotificationReceived = @"RemoteNotificationReceived";
+NSString *const CrispyRemoteNotificationReceived = @"RemoteNotificationReceived";
 
 static NSString *const kLocalNotificationReceived = @"LocalNotificationReceived";
 static NSString *const kRemoteNotificationsRegistered = @"RemoteNotificationsRegistered";
@@ -39,7 +39,7 @@ RCT_ENUM_CONVERTER(NSCalendarUnit,
 
 @end
 
-@interface RNCPushNotificationIOS ()
+@interface CrispyPushNotificationIOS ()
 @property (nonatomic, strong) NSMutableDictionary *remoteNotificationCallbacks;
 @end
 
@@ -74,11 +74,11 @@ RCT_ENUM_CONVERTER(UIBackgroundFetchResult, (@{
 
 @end
 #else
-@interface RNCPushNotificationIOS () <NativePushNotificationManagerIOS>
+@interface CrispyPushNotificationIOS () <NativePushNotificationManagerIOS>
 @end
 #endif //TARGET_OS_TV / TARGET_OS_UIKITFORMAC
 
-@implementation RNCPushNotificationIOS
+@implementation CrispyPushNotificationIOS
 
 #if !TARGET_OS_TV && !TARGET_OS_UIKITFORMAC
 
@@ -143,7 +143,7 @@ static NSDictionary *RCTFormatOpenedUNNotification(UNNotification *notification)
 
 #endif //TARGET_OS_TV / TARGET_OS_UIKITFORMAC
 
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE(CrispyPushNotificationIOS)
 
 - (dispatch_queue_t)methodQueue
 {
@@ -159,7 +159,7 @@ RCT_EXPORT_MODULE()
                                              object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleRemoteNotificationReceived:)
-                                               name:RCTRemoteNotificationReceived
+                                               name:CrispyRemoteNotificationReceived
                                              object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleRemoteNotificationsRegistered:)
@@ -211,7 +211,7 @@ RCT_EXPORT_MODULE()
 + (void)didReceiveRemoteNotification:(NSDictionary *)notification
 {
   NSDictionary *userInfo = @{@"notification": notification};
-  [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+  [[NSNotificationCenter defaultCenter] postNotificationName:CrispyRemoteNotificationReceived
                                                       object:self
                                                     userInfo:userInfo];
 }
@@ -220,7 +220,7 @@ RCT_EXPORT_MODULE()
               fetchCompletionHandler:(RNCRemoteNotificationCallback)completionHandler
 {
   NSDictionary *userInfo = @{@"notification": notification, @"completionHandler": completionHandler};
-  [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+  [[NSNotificationCenter defaultCenter] postNotificationName:CrispyRemoteNotificationReceived
                                                       object:self
                                                     userInfo:userInfo];
 }

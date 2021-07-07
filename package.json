@@ -2,6 +2,8 @@
   "name": "@th0r0nd0r/push-notification-ios",
   "version": "1.8.0",
   "description": "extension of @react-native-community/push-notification-ios",
+  "author": "batman",
+  "summary": "a fork of push-notification-ios that implements a register() function",
   "main": "js/index.js",
   "types": "index.d.ts",
   "homepage": "https://github.com/th0r0nd0r/push-notification-ios#readme",
@@ -11,7 +13,7 @@
     "ios",
     "js",
     "index.d.ts",
-    "RNCPushNotificationIOS.podspec"
+    "CrispyPushNotificationIOS.podspec"
   ],
   "scripts": {
     "start": "react-native start",
