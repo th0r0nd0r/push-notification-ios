@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RNCPushNotificationIOS.h"
+#import "CrispyPushNotificationIOS.h"
 
 #import <UserNotifications/UserNotifications.h>
 
@@ -39,7 +39,7 @@ RCT_ENUM_CONVERTER(NSCalendarUnit,
 
 @end
 
-@interface RNCPushNotificationIOS ()
+@interface CrispyPushNotificationIOS ()
 @property (nonatomic, strong) NSMutableDictionary *remoteNotificationCallbacks;
 @end
 
@@ -74,11 +74,11 @@ RCT_ENUM_CONVERTER(UIBackgroundFetchResult, (@{
 
 @end
 #else
-@interface RNCPushNotificationIOS () <NativePushNotificationManagerIOS>
+@interface CrispyPushNotificationIOS () <NativePushNotificationManagerIOS>
 @end
 #endif //TARGET_OS_TV / TARGET_OS_UIKITFORMAC
 
-@implementation RNCPushNotificationIOS
+@implementation CrispyPushNotificationIOS
 
 #if !TARGET_OS_TV && !TARGET_OS_UIKITFORMAC
 
