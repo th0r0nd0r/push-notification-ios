@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9BEF92C02212C2D10027AF0D /* CrispyPushNotificationIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B97F674220DED9C00B61540 /* CrispyPushNotificationIOS.m */; };
+		9BEF92C02212C2D10027AF0D /* RNCPushNotificationIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B97F674220DED9C00B61540 /* RNCPushNotificationIOS.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,9 +23,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9B97F666220DEAF700B61540 /* CrispyPushNotificationIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrispyPushNotificationIOS.h; sourceTree = "<group>"; };
-		9B97F66B220DEC6000B61540 /* libCrispyPushNotificationIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCrispyPushNotificationIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B97F674220DED9C00B61540 /* CrispyPushNotificationIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrispyPushNotificationIOS.m; sourceTree = "<group>"; };
+		9B97F666220DEAF700B61540 /* RNCPushNotificationIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNCPushNotificationIOS.h; sourceTree = "<group>"; };
+		9B97F66B220DEC6000B61540 /* libRNCPushNotificationIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNCPushNotificationIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B97F674220DED9C00B61540 /* RNCPushNotificationIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCPushNotificationIOS.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,8 +49,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				9B97F674220DED9C00B61540 /* CrispyPushNotificationIOS.m */,
-				9B97F666220DEAF700B61540 /* CrispyPushNotificationIOS.h */,
+				9B97F674220DED9C00B61540 /* RNCPushNotificationIOS.m */,
+				9B97F666220DEAF700B61540 /* RNCPushNotificationIOS.h */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 			);
@@ -62,7 +62,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9B97F66B220DEC6000B61540 /* libCrispyPushNotificationIOS.a */,
+				9B97F66B220DEC6000B61540 /* libRNCPushNotificationIOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9B97F66A220DEC6000B61540 /* CrispyPushNotificationIOS */ = {
+		9B97F66A220DEC6000B61540 /* RNCPushNotificationIOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B97F671220DEC6000B61540 /* Build configuration list for PBXNativeTarget "CrispyPushNotificationIOS" */;
+			buildConfigurationList = 9B97F671220DEC6000B61540 /* Build configuration list for PBXNativeTarget "RNCPushNotificationIOS" */;
 			buildPhases = (
 				9B97F667220DEC6000B61540 /* Sources */,
 				9B97F668220DEC6000B61540 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = CrispyPushNotificationIOS;
-			productName = CrispyPushNotificationIOS;
-			productReference = 9B97F66B220DEC6000B61540 /* libCrispyPushNotificationIOS.a */;
+			name = RNCPushNotificationIOS;
+			productName = RNCPushNotificationIOS;
+			productReference = 9B97F66B220DEC6000B61540 /* libRNCPushNotificationIOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9B97F66A220DEC6000B61540 /* CrispyPushNotificationIOS */,
+				9B97F66A220DEC6000B61540 /* RNCPushNotificationIOS */,
 			);
 		};
 /* End PBXProject section */
@@ -125,7 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BEF92C02212C2D10027AF0D /* CrispyPushNotificationIOS.m in Sources */,
+				9BEF92C02212C2D10027AF0D /* RNCPushNotificationIOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +289,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B97F671220DEC6000B61540 /* Build configuration list for PBXNativeTarget "CrispyPushNotificationIOS" */ = {
+		9B97F671220DEC6000B61540 /* Build configuration list for PBXNativeTarget "RNCPushNotificationIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B97F672220DEC6000B61540 /* Debug */,

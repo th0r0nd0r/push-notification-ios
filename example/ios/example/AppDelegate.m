@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 
-#import <CrispyPushNotificationIOS.h>
+#import <RNCPushNotificationIOS.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -81,7 +81,7 @@ static void InitializeFlipper(UIApplication *application) {
 // Required for the register event.
 - (void)application:(UIApplication *)application
     didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [CrispyPushNotificationIOS
+  [RNCPushNotificationIOS
       didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 // Required for the notification event. You must call the completion handler
@@ -90,20 +90,20 @@ static void InitializeFlipper(UIApplication *application) {
     didReceiveRemoteNotification:(NSDictionary *)userInfo
           fetchCompletionHandler:
               (void (^)(UIBackgroundFetchResult))completionHandler {
-  [CrispyPushNotificationIOS didReceiveRemoteNotification:userInfo
+  [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo
                                 fetchCompletionHandler:completionHandler];
 }
 // Required for the registrationError event.
 - (void)application:(UIApplication *)application
     didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  [CrispyPushNotificationIOS
+  [RNCPushNotificationIOS
       didFailToRegisterForRemoteNotificationsWithError:error];
 }
 // Required for local notification tapped event
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
     didReceiveNotificationResponse:(UNNotificationResponse *)response
              withCompletionHandler:(void (^)(void))completionHandler {
-  [CrispyPushNotificationIOS didReceiveNotificationResponse:response];
+  [RNCPushNotificationIOS didReceiveNotificationResponse:response];
   completionHandler();
 }
 

@@ -10,7 +10,7 @@
 
 extern NSString *const RNCRemoteNotificationReceived;
 
-@interface CrispyPushNotificationIOS : RCTEventEmitter
+@interface RNCPushNotificationIOS : RCTEventEmitter
 
 typedef void (^RNCRemoteNotificationCallback)(UIBackgroundFetchResult result);
 
