@@ -7,7 +7,7 @@ node_modules/@react-native-community/push-notification-ios/ios/PushNotificationI
 
 - Add the following to `Link Binary With Libraries` phase
 ```
-libCrispyPushNotificationIOS.a
+libRNCPushNotificationIOS.a
 ```
 
 More info on manual linking, [here](https://reactnative.dev/docs/linking-libraries-ios).

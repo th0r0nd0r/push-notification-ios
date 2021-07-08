@@ -13,9 +13,9 @@
 import {NativeEventEmitter, NativeModules} from 'react-native';
 import invariant from 'invariant';
 
-const {CrispyPushNotificationIOS} = NativeModules;
+const {RNCPushNotificationIOS} = NativeModules;
 
-const PushNotificationEmitter = new NativeEventEmitter(CrispyPushNotificationIOS);
+const PushNotificationEmitter = new NativeEventEmitter(RNCPushNotificationIOS);
 
 const _notifHandlers = new Map();
 
@@ -92,7 +92,7 @@ class PushNotificationIOS {
    * See https://reactnative.dev/docs/pushnotificationios.html#presentlocalnotification
    */
   static presentLocalNotification(details: Object) {
-    CrispyPushNotificationIOS.presentLocalNotification(details);
+    RNCPushNotificationIOS.presentLocalNotification(details);
   }
 
   /**
@@ -101,7 +101,7 @@ class PushNotificationIOS {
    * See https://reactnative.dev/docs/pushnotificationios.html#schedulelocalnotification
    */
   static scheduleLocalNotification(details: Object) {
-    CrispyPushNotificationIOS.scheduleLocalNotification(details);
+    RNCPushNotificationIOS.scheduleLocalNotification(details);
   }
 
   /**
@@ -111,10 +111,10 @@ class PushNotificationIOS {
    */
   static cancelAllLocalNotifications() {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.cancelAllLocalNotifications();
+    RNCPushNotificationIOS.cancelAllLocalNotifications();
   }
 
   /**
@@ -124,10 +124,10 @@ class PushNotificationIOS {
    */
   static removeAllDeliveredNotifications(): void {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.removeAllDeliveredNotifications();
+    RNCPushNotificationIOS.removeAllDeliveredNotifications();
   }
 
   /**
@@ -139,10 +139,10 @@ class PushNotificationIOS {
     callback: (notifications: Array<Object>) => void,
   ): void {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.getDeliveredNotifications(callback);
+    RNCPushNotificationIOS.getDeliveredNotifications(callback);
   }
 
   /**
@@ -152,10 +152,10 @@ class PushNotificationIOS {
    */
   static removeDeliveredNotifications(identifiers: Array<string>): void {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.removeDeliveredNotifications(identifiers);
+    RNCPushNotificationIOS.removeDeliveredNotifications(identifiers);
   }
 
   /**
@@ -165,10 +165,10 @@ class PushNotificationIOS {
    */
   static setApplicationIconBadgeNumber(number: number) {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.setApplicationIconBadgeNumber(number);
+    RNCPushNotificationIOS.setApplicationIconBadgeNumber(number);
   }
 
   /**
@@ -178,10 +178,10 @@ class PushNotificationIOS {
    */
   static getApplicationIconBadgeNumber(callback: Function) {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.getApplicationIconBadgeNumber(callback);
+    RNCPushNotificationIOS.getApplicationIconBadgeNumber(callback);
   }
 
   /**
@@ -191,10 +191,10 @@ class PushNotificationIOS {
    */
   static cancelLocalNotifications(userInfo: Object) {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.cancelLocalNotifications(userInfo);
+    RNCPushNotificationIOS.cancelLocalNotifications(userInfo);
   }
 
   /**
@@ -204,10 +204,10 @@ class PushNotificationIOS {
    */
   static getScheduledLocalNotifications(callback: Function) {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.getScheduledLocalNotifications(callback);
+    RNCPushNotificationIOS.getScheduledLocalNotifications(callback);
   }
 
   /**
@@ -312,10 +312,10 @@ class PushNotificationIOS {
       };
     }
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    return CrispyPushNotificationIOS.requestPermissions(requestedPermissions);
+    return RNCPushNotificationIOS.requestPermissions(requestedPermissions);
   }
 
   /**
@@ -323,11 +323,11 @@ class PushNotificationIOS {
    */
   static register() {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
 
-    CrispyPushNotificationIOS.registerForNotifications();
+    RNCPushNotificationIOS.registerForNotifications();
   }
 
   /**
@@ -337,10 +337,10 @@ class PushNotificationIOS {
    */
   static abandonPermissions() {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.abandonPermissions();
+    RNCPushNotificationIOS.abandonPermissions();
   }
 
   /**
@@ -352,10 +352,10 @@ class PushNotificationIOS {
   static checkPermissions(callback: Function) {
     invariant(typeof callback === 'function', 'Must provide a valid callback');
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.checkPermissions(callback);
+    RNCPushNotificationIOS.checkPermissions(callback);
   }
 
   /**
@@ -366,10 +366,10 @@ class PushNotificationIOS {
    */
   static getInitialNotification(): Promise<?PushNotificationIOS> {
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    return CrispyPushNotificationIOS.getInitialNotification().then(
+    return RNCPushNotificationIOS.getInitialNotification().then(
       (notification) => {
         return notification && new PushNotificationIOS(notification);
       },
@@ -437,10 +437,10 @@ class PushNotificationIOS {
     this._remoteNotificationCompleteCallbackCalled = true;
 
     invariant(
-      CrispyPushNotificationIOS,
+      RNCPushNotificationIOS,
       'PushNotificationManager is not available.',
     );
-    CrispyPushNotificationIOS.onFinishRemoteNotification(
+    RNCPushNotificationIOS.onFinishRemoteNotification(
       this._notificationId,
       fetchResult,
     );
